@@ -8,7 +8,7 @@ echo "Setting up node2..."
 echo "hostname is $hn according to pos"
 
 # clone git repo
-repository="git@github.com:patriciaaviv/mosquitto.git"
+repository="https://github.com/patriciaaviv/mosquitto.git"
 # which folder is mine on the test node?
 mkdir mqtt
 localFolder="/root/mqtt/"
