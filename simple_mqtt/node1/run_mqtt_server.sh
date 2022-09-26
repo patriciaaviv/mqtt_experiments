@@ -2,7 +2,7 @@
 
 echo "Starting the mosquitto server now ..."
 # cd into where my repo is
-cd /root/mqtt/src
+cd /root/mqtt/mosquitto/src
 make
 ./mosquitto -c mosquitto.conf -v
 

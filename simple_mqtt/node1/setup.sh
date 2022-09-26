@@ -13,7 +13,7 @@ apt-get install tshark
 repository="https://github.com/patriciaaviv/mosquitto.git"
 # which folder is mine on the test node?
 mkdir mqtt
-localFolder="/root/mqtt/"
+localFolder="/root/mqtt/mosquitto"
 git clone "$repository" "$localFolder"
 
 # compile the files
