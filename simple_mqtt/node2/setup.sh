@@ -20,7 +20,7 @@ git clone "$repository" "$localFolder"
 
 # compile the files
 cd /mqtt/mosquitto
-make clean
+make
 
 echo "setup of client node completed"
 
