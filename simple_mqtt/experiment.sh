@@ -33,8 +33,9 @@ pos nodes image $NODE1 debian-bullseye
 pos nodes image $NODE2 debian-bullseye
 
 # reset/reboot nodes
-pos nodes reset $NODE1 --non-blocking
-pos nodes reset $NODE2 --non-blocking
+pos nodes reset $NODE1 
+pos nodes reset $NODE2 
+echo "nodes booted successfully"
 
 # TODO: setup nodes
 pos commands launch -i node1/setup.sh --queued --name setup $NODE1
