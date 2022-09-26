@@ -7,6 +7,8 @@ a_local_variable=$(pos_get_variable a/local/variable)
 echo "Setting up server node ..."
 echo "hostname is $hn according to pos"
 
+apt-get install tshark
+
 # clone git repo
 repository="https://github.com/patriciaaviv/mosquitto.git"
 # which folder is mine on the test node?
@@ -16,7 +18,7 @@ git clone "$repository" "$localFolder"
 
 # compile the files
 cd /root/mqtt/
-make
+make clean
 
 echo "setup of server node completed"
 
