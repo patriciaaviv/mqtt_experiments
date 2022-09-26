@@ -37,8 +37,8 @@ pos nodes reset $NODE1 --non-blocking
 pos nodes reset $NODE2 --non-blocking
 
 # TODO: setup nodes
-pos commands launch setup.sh --queued --name setup $NODE1
-pos commands launch setup.sh --queued --name setup $NODE2
+pos commands launch -i setup.sh --queued --name setup $NODE1
+pos commands launch -i setup.sh --queued --name setup $NODE2
 
 
 # TODO: execute experiment on nodes
