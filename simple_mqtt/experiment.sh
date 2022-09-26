@@ -37,17 +37,19 @@ pos nodes reset $NODE1 --non-blocking
 pos nodes reset $NODE2 --non-blocking
 
 # TODO: setup nodes
-pos commands launch --infile node1/setup.sh --queued --name setup $NODE1
-pos commands launch --infile node2/setup.sh --queued --name setup $NODE2
+pos commands launch setup.sh --queued --name setup $NODE1
+pos commands launch setup.sh --queued --name setup $NODE2
+
 
 # TODO: execute experiment on nodes
-pos commands launch --infile node1/run_mqtt_server.sh --queued --loop --name run_mqtt_server $NODE1
+pos commands launch --infile node1/run_mqtt_server.sh --name run_mqtt_server $NODE1
 # as all nodes sync at start and end of measurement scripts, launching the
 # loop for the last node in blocking mode accurately displays the current
 # progress
-pos commands launch --infile node2/run_mqtt_sub.sh --blocking --loop --name run_mqtt_sub $NODE2
+pos commands launch --infile node2/run_mqtt_sub.sh --name run_mqtt_sub $NODE2
 
 # free nodes
-#pos allocations free $NODE1
+pos allocations free $NODE1
+pos allocations free $NODE2
 
 
