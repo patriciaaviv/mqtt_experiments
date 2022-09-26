@@ -5,6 +5,7 @@ echo "Starting the mosquitto server now ..."
 #echo "current dir is $PWD", current dir is /root
 DIR= "$(pwd)/mqtt/mosquitto/src"
 cd $DIR
+ls -la 1>&2
 make 
 ./mosquitto -v
 
