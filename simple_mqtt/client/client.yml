@@ -1,3 +1,0 @@
-a:
-        local:
-                variable: 'from node2 -> client node'

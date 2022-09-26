@@ -9,6 +9,7 @@ echo "hostname is $hn according to pos"
 
 apt-get install tshark
 apt-get install nftables
+apt-get install libssl-dev
 
 # clone git repo
 repository="https://github.com/patriciaaviv/mosquitto.git"
