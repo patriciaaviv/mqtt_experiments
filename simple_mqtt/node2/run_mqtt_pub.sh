@@ -2,7 +2,7 @@
 
 echo "Starting the mosquitto server now ..."
 # cd into where my repo is
-cd client
+cd mqtt/mosquitto/client
 make
 $TOPIC=test
 $MSG=hello

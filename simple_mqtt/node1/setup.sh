@@ -18,7 +18,7 @@ localFolder="/root/mqtt/mosquitto"
 git clone "$repository" "$localFolder"
 
 # compile the files
-cd /mqtt/mosquitto
+#cd /mqtt/mosquitto
 #make
 
 echo "setup of server node completed"
