@@ -19,11 +19,11 @@ NODE2=$2
 pos allocations allocate --duration 10 $NODE1 $NODE2
 
 # load global variables (the allocation is referred to by any node within it)
-pos allocations set_variables $NODE1 --as-global ./global-variables.yml
+#pos allocations set_variables $NODE1 --as-global ./global-variables.yml
 
 # load local variables
-pos allocations set_variables $NODE1 ./node1/node1.yml
-pos allocations set_variables $NODE2 ./node2/node2.yml
+#pos allocations set_variables $NODE1 ./node1/node1.yml
+#pos allocations set_variables $NODE2 ./node2/node2.yml
 
 # TODO: load loop variables
 # pos allocations set_variables $NODE1 --as-loop ./loop-variables.yml
