@@ -7,4 +7,4 @@ make
 $TOPIC=test
 $MSG=hello
 $HOST=172.16.2.1 #riga
-./mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
+./root/mqtt/mosquitto/client/mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
