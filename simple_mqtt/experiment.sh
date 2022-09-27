@@ -14,9 +14,12 @@ set -e # exit on error
 NODE1=$1
 NODE2=$2
 
+# free nodes if already allocated
+pos allocations free $NODE1
+pos allocations free $NODE2
 
 # allocate experiment nodes
-pos allocations allocate --duration 10 $NODE1 $NODE2
+pos allocations allocate --duration 100 $NODE1 $NODE2
 
 # load global variables (the allocation is referred to by any node within it)
 #pos allocations set_variables $NODE1 --as-global ./global-variables.yml
@@ -35,6 +38,7 @@ pos nodes image $NODE2 debian-bullseye
 # reset/reboot nodes
 pos nodes reset $NODE1 
 pos nodes reset $NODE2 
+
 echo "nodes booted successfully"
 
 # TODO: setup nodes
@@ -44,13 +48,6 @@ pos commands launch -i node2/setup.sh --queued --name setup $NODE2
 
 # TODO: execute experiment on nodes
 pos commands launch --infile node1/run_mqtt_server.sh --name run_mqtt_server $NODE1
-# as all nodes sync at start and end of measurement scripts, launching the
-# loop for the last node in blocking mode accurately displays the current
-# progress
 pos commands launch --infile node2/run_mqtt_sub.sh --name run_mqtt_sub $NODE2
 
-# free nodes
-pos allocations free $NODE1
-pos allocations free $NODE2
-
-
+echo "finished setting up the nodes"
