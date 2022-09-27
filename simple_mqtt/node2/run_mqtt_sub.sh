@@ -13,7 +13,7 @@ apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
 DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
-DEBIAN_FRONTEND=noninteractive apt-get install mosquitto -y
+EBIAN_FRONTEND=noninteractive apt-get install mosquitto-clients -y
 
 # # # clone git repo
 # repository="https://github.com/patriciaaviv/mosquitto.git"

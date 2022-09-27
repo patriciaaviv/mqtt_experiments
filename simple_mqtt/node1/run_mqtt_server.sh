@@ -26,7 +26,7 @@ echo "allow_anonymous true" >> /etc/mosquitto/mosquitto.conf
 
 echo "Starting the mosquitto server now ..."
 # write server output into a txt file
-mosquitto -p 1883 -v -c /etc/mosquitto/mosquitto.conf >> /root/mqtt_server_output.txt
+mosquitto -v -c /etc/mosquitto/mosquitto.conf >> /root/mqtt_server_output.txt
 
 # cd into where my repo is
 # cd mqtt/mosquitto/src/
