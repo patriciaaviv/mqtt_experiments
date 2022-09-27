@@ -23,6 +23,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install ufw -y
 
 DEBIAN_FRONTEND=noninteractive apt-get install mosquitto -y
 
+ufw allow 22
 ufw allow 1883 
 ufw enable
 
