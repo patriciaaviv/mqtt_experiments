@@ -47,7 +47,7 @@ echo "nodes booted successfully"
 
 
 # TODO: execute experiment on nodes
-pos commands launch --infile node1/run_mqtt_server.sh --name run_mqtt_server $NODE1
-pos commands launch --infile node2/run_mqtt_sub.sh --name run_mqtt_sub $NODE2
+pos commands launch --infile node1/run_mqtt_server.sh --queued -v --name run_mqtt_server $NODE1
+pos commands launch --infile node2/run_mqtt_sub.sh --queued -v --name run_mqtt_sub $NODE2
 
 echo "finished setting up the nodes"
