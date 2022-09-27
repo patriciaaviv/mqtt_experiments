@@ -13,12 +13,14 @@ apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
 DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
+DEBIAN_FRONTEND=noninteractive apt-get install mosquitto -y
+
 # # clone git repo
-repository="https://github.com/patriciaaviv/mosquitto.git"
-# which folder is mine on the test node?
-mkdir mqtt
-localFolder="/root/mqtt/mosquitto"
-git clone "$repository" "$localFolder"
+# repository="https://github.com/patriciaaviv/mosquitto.git"
+# # which folder is mine on the test node?
+# mkdir mqtt
+# localFolder="/root/mqtt/mosquitto"
+# git clone "$repository" "$localFolder"
 
 # set up interfaces
 $IFACE1="eno1"
@@ -44,9 +46,9 @@ echo "setup of client node completed"
 echo "Starting the mosquitto server now ..."
 
 # cd into where my repo is
-cd mqtt/mosquitto/client
-make
+# cd mqtt/mosquitto/client
+# make
 $TOPIC=test
 $MSG=hello
 $HOST=172.16.2.1 #riga
-./mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
+mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
