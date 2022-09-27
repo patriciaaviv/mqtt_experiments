@@ -6,6 +6,12 @@ set -e
 # log every command
 set -x
 
+# update apt-get 
+apt-get update -y
+
+apt-get install tshark -y
+apt-get install libssl-dev -y
+
 # clone git repo
 repository="https://github.com/patriciaaviv/mosquitto.git"
 # which folder is mine on the test node?
