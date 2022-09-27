@@ -12,12 +12,14 @@ apt-get update -y
 
 DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
 DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
+DEBIAN_FRONTEND=noninteractive apt-get install nmap -y
+DEBIAN_FRONTEND=noninteractive apt-get install telnet -y
+DEBIAN_FRONTEND=noninteractive apt-get install net-tools -y
 
 DEBIAN_FRONTEND=noninteractive apt-get install mosquitto-clients -y
 
 # # clone git repo
 # repository="https://github.com/patriciaaviv/mosquitto.git"
-# # which folder is mine on the test node?
 # mkdir mqtt
 # localFolder="/root/mqtt/mosquitto"
 # git clone "$repository" "$localFolder"

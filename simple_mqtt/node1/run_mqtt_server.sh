@@ -10,19 +10,25 @@ apt-get update -y
 
 DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
 DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
+DEBIAN_FRONTEND=noninteractive apt-get install nmap -y
+DEBIAN_FRONTEND=noninteractive apt-get install telnet -y
+DEBIAN_FRONTEND=noninteractive apt-get install net-tools -y
 
 # # clone git repo
 # repository="https://github.com/patriciaaviv/mosquitto.git"
-# # which folder is mine on the test node?
 # mkdir mqtt
 # localFolder="/root/mqtt/mosquitto"
 # git clone "$repository" "$localFolder"
 
 DEBIAN_FRONTEND=noninteractive apt-get install mosquitto -y
 
+ufw allow 1883 
+ufw enable
+
 # configure mosquitto broker to allow remote connections
-echo "listener 1883 0.0.0.0" >> /etc/mosquitto/mosquitto.conf
+echo "listener 1883 172.16.2.1" >> /etc/mosquitto/mosquitto.conf
 echo "allow_anonymous true" >> /etc/mosquitto/mosquitto.conf
+
 
 echo "Starting the mosquitto server now ..."
 # write server output into a txt file
