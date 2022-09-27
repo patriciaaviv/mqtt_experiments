@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#local="/root/mqtt"
 # exit on error
 set -e
 # log every command
@@ -9,8 +8,8 @@ set -x
 # update apt-get 
 apt-get update -y
 
-apt-get install tshark -y
-apt-get install libssl-dev -y
+DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
+DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
 # clone git repo
 repository="https://github.com/patriciaaviv/mosquitto.git"
@@ -22,9 +21,6 @@ git clone "$repository" "$localFolder"
 echo "Starting the mosquitto server now ..."
 
 # cd into where my repo is
-#echo "current dir is $PWD", current dir is /root
-#DIR= "$(pwd)/mqtt/mosquitto/src"
-#cd $DIR
 cd mqtt/mosquitto/src/
 ls -la #1>&2
 make 

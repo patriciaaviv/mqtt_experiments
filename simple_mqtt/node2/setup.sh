@@ -10,15 +10,15 @@ echo "Setting up node2..."
 # update apt-get 
 apt-get update -y
 
-apt-get install tshark
-apt-get install libssl-dev
+DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
+DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
-# clone git repo
-repository="https://github.com/patriciaaviv/mosquitto.git"
-# which folder is mine on the test node?
-mkdir mqtt
-localFolder="/root/mqtt/mosquitto"
-git clone "$repository" "$localFolder"
+# # clone git repo
+# repository="https://github.com/patriciaaviv/mosquitto.git"
+# # which folder is mine on the test node?
+# mkdir mqtt
+# localFolder="/root/mqtt/mosquitto"
+# git clone "$repository" "$localFolder"
 
 # set up interfaces
 $IFACE1="eno1"
