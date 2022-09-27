@@ -6,10 +6,10 @@ set -e
 set -x
 
 # update apt-get 
-# apt-get update -y
+apt-get update -y
 
-# DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
-# DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
+DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
+DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
 # clone git repo
 repository="https://github.com/patriciaaviv/mosquitto.git"

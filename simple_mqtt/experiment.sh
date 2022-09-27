@@ -42,8 +42,8 @@ pos nodes reset $NODE2
 echo "nodes booted successfully"
 
 # TODO: setup nodes
-pos commands launch -i node1/setup.sh --queued --name setup $NODE1
-pos commands launch -i node2/setup.sh --queued --name setup $NODE2
+#pos commands launch -i node1/setup.sh --queued --name setup $NODE1
+#pos commands launch -i node2/setup.sh --queued --name setup $NODE2
 
 
 # TODO: execute experiment on nodes
