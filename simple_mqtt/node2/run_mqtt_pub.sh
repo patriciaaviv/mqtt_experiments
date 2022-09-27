@@ -14,11 +14,11 @@ DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
 DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 
 # # clone git repo
-# repository="https://github.com/patriciaaviv/mosquitto.git"
-# # which folder is mine on the test node?
-# mkdir mqtt
-# localFolder="/root/mqtt/mosquitto"
-# git clone "$repository" "$localFolder"
+repository="https://github.com/patriciaaviv/mosquitto.git"
+# which folder is mine on the test node?
+mkdir mqtt
+localFolder="/root/mqtt/mosquitto"
+git clone "$repository" "$localFolder"
 
 # set up interfaces
 $IFACE1="eno1"
