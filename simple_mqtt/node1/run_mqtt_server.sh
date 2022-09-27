@@ -13,6 +13,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
 DEBIAN_FRONTEND=noninteractive apt-get install nmap -y
 DEBIAN_FRONTEND=noninteractive apt-get install telnet -y
 DEBIAN_FRONTEND=noninteractive apt-get install net-tools -y
+DEBIAN_FRONTEND=noninteractive apt-get install ufw -y
 
 # # clone git repo
 # repository="https://github.com/patriciaaviv/mosquitto.git"
