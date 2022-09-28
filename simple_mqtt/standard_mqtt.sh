@@ -36,10 +36,10 @@ echo "nodes booted successfully"
 # pos commands await $BROKER_SETUP_ID
 # pos commands await $CLIENT_SETUP_ID
 #pos nodes copy $NODE1 node1/setup_broker.sh 
-pos commands launch $NODE1 -i node1/setup_broker.sh -v
+pos commands launch $NODE1 -i node1/setup_broker.sh -v --queued
 
 #pos nodes copy $NODE2 node2/setup_client.sh
-pos commands launch $NODE2 -i node2/setup_client.sh -v
+pos commands launch $NODE2 -i node2/setup_client.sh -v --queued
 
 
 # # execute experiment on nodes
@@ -49,10 +49,10 @@ pos commands launch $NODE2 -i node2/setup_client.sh -v
 #pos commands launch --infile node2/run_mqtt_sub.sh --queued -v --name run_mqtt_sub $NODE2
 
 #pos nodes copy $NODE1 node1/run_mqtt_server.sh 
-pos commands launch $NODE1 -i node1/run_mqtt_server.sh -v
+pos commands launch $NODE1 -i node1/run_mqtt_server.sh -v --queued
 
 #pos nodes copy $NODE2 node2/run_mqtt_sub.sh
-pos commands launch $NODE2 -i node2/run_mqtt_sub.sh -v
+pos commands launch $NODE2 -i node2/run_mqtt_sub.sh -v --queued
 
 
 echo "finished setting up the nodes"
