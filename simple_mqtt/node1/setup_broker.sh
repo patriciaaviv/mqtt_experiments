@@ -22,5 +22,9 @@ make WITH_DOCS=no
 # mosquitto user
 adduser --disabled-password --gecos "" mosquitto
 
+ufw allow 22
+ufw allow 1883 
+ufw enable
+
 echo "setup of server node completed"
 
