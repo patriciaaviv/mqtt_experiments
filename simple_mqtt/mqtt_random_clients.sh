@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Simple experiment to test standard mosquitto server/client configuration
-
 # command needs to be called with two nodes
 if test "$#" -ne 2; then
 	echo "Usage: experiment.sh node1 node2"
@@ -33,6 +31,10 @@ pos nodes reset $NODE1
 pos nodes reset $NODE2 
 
 echo "nodes booted successfully"
+
+# setup nodes
+pos commands launch -i node1/setup_broker.sh --queued --name setup $NODE1
+pos commands launch -i node2/setup_client.sh --queued --name setup $NODE2
 
 pos commands launch --infile node1/run_mqtt_server.sh --queued -v --name run_mqtt_server $NODE1
 echo "start client with random ip addresses"
