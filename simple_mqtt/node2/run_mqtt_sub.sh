@@ -9,21 +9,28 @@ echo "Setting up node2..."
 
 # update apt-get 
 apt-get update -y
+DEBIAN_FRONTEND=noninteractive apt-get -y install tshark libssl-dev linux-perf tshark build-essential gcc make cmake git iptab
 
-DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
-DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
-DEBIAN_FRONTEND=noninteractive apt-get install nmap -y
-DEBIAN_FRONTEND=noninteractive apt-get install telnet -y
-DEBIAN_FRONTEND=noninteractive apt-get install net-tools -y
+# clone mosquitto git repo
+git clone https://github.com/eclipse/mosquitto.git
+cd mosquitto
+mkdir build
+cd build
 
-DEBIAN_FRONTEND=noninteractive apt-get install mosquitto-clients -y
+#cmake and make invocation: build static libraries
+cmake -DWITH_STATIC_LIBRARIES=ON ..
+make
 
-# # # clone git repo
-# repository="https://github.com/patriciaaviv/mosquitto.git"
-# # which folder is mine on the test node?
-# mkdir mqtt
-# localFolder="/root/mqtt/mosquitto"
-# git clone "$repository" "$localFolder"
+#copy resulting library in the dir you were called from
+cp lib/libmosquitto_static.a ../../libmosquitto.a
+
+#make a "headers" folder in the dir you were called from and copy header files there
+cd ../..
+mkdir headers
+cp mosquitto/lib/*.h headers/
+
+gcc mosquitto_publisher.c libmosquitto.a -Iheaders -lcrypto -lssl -lpthread -o publisher
+gcc mosquitto_subscriber.c libmosquitto.a -Iheaders -lcrypto -lssl -lpthread -o subscriber
 
 # set up interfaces
 $IFACE1="eno1"
@@ -31,10 +38,9 @@ ip link set dev $IFACE1 up
 
 echo "setup of client node completed"
 
+
 echo "Starting the mosquitto server now ..."
-# cd into where my repo is
-# cd mqtt/mosquitto/client
-# make
+cd mosquitto/client
 $TOPIC=test
 $HOST=172.16.2.1 #riga
-mosquitto_sub -p 1883 -t $TOPIC -h $HOST
+./mosquitto_sub -p 1883 -t $TOPIC -h $HOST

@@ -38,6 +38,4 @@ gcc mosquitto_subscriber.c libmosquitto.a -Iheaders -lcrypto -lssl -lpthread -o 
 $IFACE1="eno1"
 ip link set dev $IFACE1 up
 
-chmod +x *.sh
-
 echo "setup of client node completed"

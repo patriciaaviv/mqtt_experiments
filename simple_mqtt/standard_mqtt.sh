@@ -30,11 +30,11 @@ pos nodes reset $NODE2 --non-blocking
 echo "nodes booted successfully"
 
 # setup nodes
-BROKER_SETUP_ID=$(pos commands launch -i node1/setup_broker.sh --queued -v --name setup $NODE1) 
-CLIENT_SETUP_ID=$(pos commands launch -i node2/setup_client.sh --queued -v --name setup $NODE2)
+# BROKER_SETUP_ID=$(pos commands launch -i node1/setup_broker.sh --queued -v --name setup $NODE1) 
+# CLIENT_SETUP_ID=$(pos commands launch -i node2/setup_client.sh --queued -v --name setup $NODE2)
 
-pos commands await $BROKER_SETUP_ID
-pos commands await $CLIENT_SETUP_ID
+# pos commands await $BROKER_SETUP_ID
+# pos commands await $CLIENT_SETUP_ID
 
 
 # execute experiment on nodes

@@ -14,15 +14,13 @@ DEBIAN_FRONTEND=noninteractive apt-get -y install tshark linux-perf libssl-dev n
 mkdir mqtt
 cd mqtt
 git clone https://github.com/eclipse/mosquitto.git
-cd mosquitto
+cd mosquitto/src
 make WITH_DOCS=no
-cp src/mosquitto ../..
-cd ../.. 
+# cp src/mosquitto ../..
+# cd ../.. 
 
 # mosquitto user
 adduser --disabled-password --gecos "" mosquitto
-
-chmod +x *.sh
 
 echo "setup of server node completed"
 
