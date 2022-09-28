@@ -24,18 +24,24 @@ pos nodes image $NODE1 debian-bullseye
 pos nodes image $NODE2 debian-bullseye
 
 # reset/reboot nodes
-pos nodes reset $NODE1 
-pos nodes reset $NODE2 
+pos nodes reset $NODE1 --non-blocking
+pos nodes reset $NODE2 --non-blocking
 
 echo "nodes booted successfully"
 
 # setup nodes
-pos commands launch -i node1/setup_broker.sh --queued --name setup $NODE1
-pos commands launch -i node2/setup_client.sh --queued --name setup $NODE2
+BROKER_SETUP_ID=$(pos commands launch -i node1/setup_broker.sh --queued -v --name setup $NODE1) 
+CLIENT_SETUP_ID=$(pos commands launch -i node2/setup_client.sh --queued -v --name setup $NODE2)
+
+pos commands await $BROKER_SETUP_ID
+pos commands await $CLIENT_SETUP_ID
 
 
 # execute experiment on nodes
-pos commands launch --infile node1/run_mqtt_server.sh --queued -v --name run_mqtt_server $NODE1
+COMMAND_BROKER_ID=$(pos commands launch --infile node1/run_mqtt_server.sh --queued -v --name run_mqtt_server $NODE1)
+# wait for broker to be running
+pos commands await $COMMAND_BROKER_ID
+
 pos commands launch --infile node2/run_mqtt_sub.sh --queued -v --name run_mqtt_sub $NODE2
 
 echo "finished setting up the nodes"

@@ -10,47 +10,39 @@ echo "Setting up node2..."
 # update apt-get 
 apt-get update -y
 
-DEBIAN_FRONTEND=noninteractive apt-get install tshark -y
-DEBIAN_FRONTEND=noninteractive apt-get install libssl-dev -y
-DEBIAN_FRONTEND=noninteractive apt-get install nmap -y
-DEBIAN_FRONTEND=noninteractive apt-get install telnet -y
-DEBIAN_FRONTEND=noninteractive apt-get install net-tools -y
-
-DEBIAN_FRONTEND=noninteractive apt-get install mosquitto-clients -y
-
-# # clone git repo
-# repository="https://github.com/patriciaaviv/mosquitto.git"
-# mkdir mqtt
-# localFolder="/root/mqtt/mosquitto"
-# git clone "$repository" "$localFolder"
+DEBIAN_FRONTEND=noninteractive apt-get -y install tshark libssl-dev linux-perf tshark build-essential gcc make cmake git iptables
 
 # set up interfaces
 $IFACE1="eno1"
 ip link set dev $IFACE1 up
 
-# use nftables instead of iptables
-# normally the service is inactive, so enable it 
-systemctl enable nftables.service
-systemctl start nftables.service
+# clone mosquitto git repo
+git clone https://github.com/eclipse/mosquitto.git
+cd mosquitto
+mkdir build
+cd build
 
-# add the rule to nftables
-# show all nftable rules with nft list ruleset
+#cmake and make invocation: build static libraries
+cmake -DWITH_STATIC_LIBRARIES=ON ..
+make
 
-# load nftables config file
-nft -f /etc/nftables.conf
+#copy resulting library in the dir you were called from
+cp lib/libmosquitto_static.a ../../libmosquitto.a
 
+#make a "headers" folder in the dir you were called from and copy header files there
+cd ../..
+mkdir headers
+cp mosquitto/lib/*.h headers/
 
-# include iptables rule to randomize IP address
-#iptables -t nat -A POSTROUTING -o $IFACE1 -p tcp -m tcp --syn -m statistic --mode random --probability 0.5 -j SNAT --to-source 172.16.1.1
-#iptables -t nat -A POSTROUTING -o $IFACE1 -m statistic --mode nth --every 1 --packet 0 -j SNAT --to-source 172.16.1.1
+gcc mosquitto_publisher.c libmosquitto.a -Iheaders -lcrypto -lssl -lpthread -o publisher
+gcc mosquitto_subscriber.c libmosquitto.a -Iheaders -lcrypto -lssl -lpthread -o subscriber
 
 echo "setup of client node completed"
+
 echo "Starting the mosquitto server now ..."
 
-# cd into where my repo is
-# cd mqtt/mosquitto/client
-# make
+cd mosquitto/client
 $TOPIC=test
 $MSG=hello
 $HOST=172.16.2.1 #riga
-mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
+./mosquitto_pub -p 1883 -t $TOPIC -m "$MSG" -h $HOST
