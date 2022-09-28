@@ -10,7 +10,7 @@ echo "Setting up node2..."
 # update apt-get 
 apt-get update -y
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install tshark libssl-dev linux-perf tshark build-essential gcc make cmake git iptab
+DEBIAN_FRONTEND=noninteractive apt-get -y install tshark libssl-dev linux-perf tshark build-essential gcc make cmake git iptables
 
 # clone mosquitto git repo
 git clone https://github.com/eclipse/mosquitto.git
