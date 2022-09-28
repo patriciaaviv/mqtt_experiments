@@ -18,6 +18,7 @@ cd mosquitto/src
 make WITH_DOCS=no
 # cp src/mosquitto ../..
 cd ../.. 
+pwd
 
 # mosquitto user
 adduser --disabled-password --gecos "" mosquitto
