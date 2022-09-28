@@ -35,10 +35,10 @@ echo "nodes booted successfully"
 
 # pos commands await $BROKER_SETUP_ID
 # pos commands await $CLIENT_SETUP_ID
-pos nodes copy $NODE1 -i node1/setup_broker.sh 
+pos nodes copy $NODE1 node1/setup_broker.sh 
 pos commands launch $NODE1 chmod +x node1/setup_broker.sh
 
-pos nodes copy $NODE2 -i node2/setup_client.sh
+pos nodes copy $NODE2 node2/setup_client.sh
 pos commands launch $NODE2 chmod +x node2/setup_client.sh
 
 
