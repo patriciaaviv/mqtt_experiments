@@ -17,7 +17,7 @@ git clone https://github.com/eclipse/mosquitto.git
 cd mosquitto/src
 make WITH_DOCS=no
 # cp src/mosquitto ../..
-# cd ../.. 
+cd ../.. 
 
 # mosquitto user
 adduser --disabled-password --gecos "" mosquitto
